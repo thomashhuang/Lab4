@@ -8,19 +8,41 @@
  * 5. Remove unnecessary comments as appropriate
  */
 
-public class ReclamationProject
-{
-    static String doit(String a,String b){
-        if (a.length() > b.length()){
-            String c = a; // TODO: set c to a
-            a=b; b=c;}
-        String r = (a.equals(b)) ? "" : ""; // I love the ternary operator!
-        /*
-         * For loop with i
-         */
-        for (int i = 0; i < a.length(); i++) { for (int j = a.length() - i; j > 0; j--) {
-                for (int k = 0; k < b.length()- j; k++) {
-                    r = (a.regionMatches(i, b, k, j) && j >r.length()) ? a.substring(i,i + j) : r; // Do it!
-                        }} // Ah yeah
-        } return r; }
+/**
+ * Relevant xkcd.
+ * https://xkcd.com/1513/
+ */
+public class ReclamationProject {
+    /**
+     * Returns the longest matching substring of the two parameters.
+     * @param a first paramter
+     * @param b second parameter
+     * @return string that has been processed
+     */
+    static String doIt(final String a, final String b) {
+        String first = a;
+        String second = b;
+        if (a.length() > b.length()) {
+            first = b;
+            second = a;
+        }
+        String r = "";
+        for (int i = 0; i < first.length(); i++) {
+            for (int j = first.length() - i; j > 0; j--) {
+                for (int k = 0; k <= second.length() - j; k++) {
+                    if (first.regionMatches(i, second, k, j) && j > r.length()) {
+                        r = first.substring(i, i + j);
+                    }
+                }
+            }
+        } return r;
+    }
+
+    /**
+     * Testing cuz idk what the other thing does.
+     * @param args does a thing
+     */
+    public static void main(final String[] args) {
+        System.out.println(doIt("histesting", "hiftesting"));
+    }
 }
